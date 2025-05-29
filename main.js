@@ -16,7 +16,7 @@ let consumers = {} //key off the audioPid
 
 // const socket = io.connect('https://localhost:3031')
 //FOR LOCAL ONLY... no https
-const socket = io.connect('http://localhost:3031')
+const socket = io.connect('https://sniffles-backend.onrender.com')
 socket.on('connect',()=>{
   console.log("Connected")
 })
