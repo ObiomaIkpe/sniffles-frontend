@@ -59,19 +59,12 @@ const joinRoom = async()=>{
   const userName = document.getElementById('username').value
   const roomName = document.getElementById('room-input').value
   const joinRoomResp = await socket.emitWithAck('joinRoom',{userName,roomName})
-  // console.log(joinRoomResp)
+  console.log(joinRoomResp)
   device = new Device()
   await device.load({routerRtpCapabilities: joinRoomResp.routerRtpCapabilities})
   // console.log(device)
-  console.log(joinRoomResp)
-  // joinRoomResp contains arrays for:
-    // audioPidsToCreate
-    // mapped to videoPidsToCreate
-    // mapped to usernames
-  //These arrays, may be empty... they may have a max of 5 indicies
+  console.log(joinRoomResp)  
   requestTransportToConsume(joinRoomResp,socket,device,consumers)
-
-
   buttons.control.classList.remove('d-none')
 }
 
