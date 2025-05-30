@@ -83,7 +83,7 @@ const enableFeed = async () => {
     
   })
   buttons.localMediaLeft.srcObject = localStream
-  buttons.enableFeed.disabled = true
+  buttons.enableFeed.disabled = false
   buttons.sendFeed.disabled = false
   buttons.muteBtn.disabled = false
 }
