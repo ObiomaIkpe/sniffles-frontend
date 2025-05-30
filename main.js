@@ -63,16 +63,8 @@ const joinRoom = async()=>{
   requestTransportToConsume(joinRoomResp,socket,device,consumers)
   buttons.control.classList.remove('d-none')
 
-  //enablefeed starts here
-  localStream = await navigator.mediaDevices.getUserMedia({
-    video: true,
-     audio: true,
-    
-  })
-  buttons.localMediaLeft.srcObject = localStream
-  buttons.enableFeed.disabled = true
-  buttons.sendFeed.disabled = false
-  buttons.muteBtn.disabled = false
+  //enablefeed was here
+  
 
   //sendfeed starts here
   producerTransport = await createProducerTransport(socket,device)
@@ -82,6 +74,18 @@ const joinRoom = async()=>{
   videoProducer = producers.videoProducer
   console.log(producers)
   buttons.hangUp.disabled = false
+}
+
+const enableFeed = async () => {
+  localStream = await navigator.mediaDevices.getUserMedia({
+    video: true,
+     audio: true,
+    
+  })
+  buttons.localMediaLeft.srcObject = localStream
+  buttons.enableFeed.disabled = true
+  buttons.sendFeed.disabled = false
+  buttons.muteBtn.disabled = false
 }
 
 
@@ -111,5 +115,5 @@ const muteAudio = ()=>{
 
 buttons.joinRoom.addEventListener('click',joinRoom)
 buttons.enableFeed.addEventListener('click',enableFeed)
-buttons.sendFeed.addEventListener('click',sendFeed)
+// buttons.sendFeed.addEventListener('click',sendFeed)
 buttons.muteBtn.addEventListener('click',muteAudio)
