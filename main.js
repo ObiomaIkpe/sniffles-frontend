@@ -22,11 +22,7 @@ socket.on('connect',()=>{
 })
 
 socket.on('updateActiveSpeakers',async newListOfActives=>{
-  // console.log("updateActiveSpeakers")
-  // console.log(newListOfActives)
-  // an array of the most recent 5 dominant speakers. Just grab the 1st
-    // and put it in the slot. Move everything else down
-    // consumers is an {} with key of audioId, value of combined feed
+  
     console.log(newListOfActives)
     let slot = 0
     // remove all videos from video Els
@@ -66,10 +62,8 @@ const joinRoom = async()=>{
   console.log(joinRoomResp)  
   requestTransportToConsume(joinRoomResp,socket,device,consumers)
   buttons.control.classList.remove('d-none')
-}
 
-const enableFeed = async()=>{
-
+  //enablefeed starts here
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
      audio: true,
@@ -79,20 +73,20 @@ const enableFeed = async()=>{
   buttons.enableFeed.disabled = true
   buttons.sendFeed.disabled = false
   buttons.muteBtn.disabled = false
-}
 
-const sendFeed = async()=>{
-  //create a transport for THIS client's upstream
-  // it will handle both audio and video producers
+  //sendfeed starts here
   producerTransport = await createProducerTransport(socket,device)
-  // console.log("Have producer transport. Time to produce!")
-  // Create our producers
+
   const producers = await createProducer(localStream, producerTransport)
   audioProducer = producers.audioProducer
   videoProducer = producers.videoProducer
   console.log(producers)
   buttons.hangUp.disabled = false
 }
+
+
+
+
 
 const muteAudio = ()=>{
   // mute at the producer level, to keep the transport, and all
